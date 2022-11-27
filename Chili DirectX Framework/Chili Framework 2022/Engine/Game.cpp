@@ -42,4 +42,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	//Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
+	//Game::DrawGyarados(gyaradosX, gyaradosY);
 }

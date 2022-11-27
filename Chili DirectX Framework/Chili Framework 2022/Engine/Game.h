@@ -36,11 +36,29 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
+	void DrawGyarados(int x, int y);
+	void DrawGyaradosFlipped(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	int gyaradosSize = 53;
+	int magiKarpSize = 41;
+
+	int gyaradosX = 300;
+	int gyaradosY = 400;
+
+	int magiKarp0X = 100;
+	int magiKarp0Y = 100;
+	bool karp0IsEaten = false;
+	int magiKarp1X = 300;
+	int magiKarp1Y = 300;
+	bool karp1IsEaten = false;
+	int magiKarp2X = 200;
+	int magiKarp2Y = 100;
+	bool karp2IsEaten = false;
+
 	/********************************/
 };
