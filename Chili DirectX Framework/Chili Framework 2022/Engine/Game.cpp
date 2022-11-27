@@ -36,15 +36,73 @@ void Game::Go()
 	gfx.EndFrame();
 }
 
+int Game::ClampScreenX(int x, int size)
+{
+	if (x <= 0) {
+		x = 0;
+	}
+	else if (x > gfx.ScreenWidth - 1 - size) {
+		x = gfx.ScreenWidth - 1 - size;
+	}
+	return x;
+}
+
+int Game::ClampScreenY(int y, int size)
+{
+	if (y < 0) {
+		y = 0;
+	}
+	else if (y > gfx.ScreenHeight - 1 - size) {
+		y = gfx.ScreenHeight - 1 - size;
+	}
+
+	return y;
+}
+
+
 void Game::UpdateModel()
 {
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
+
+		gyaradosX= gyaradosX+ gyaradosMoveStep;
+		gyaradosFaceRight = true;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
+
+		gyaradosX= gyaradosX- gyaradosMoveStep;
+		gyaradosFaceRight = false;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_UP)) {
+
+		gyaradosY= gyaradosY- gyaradosMoveStep;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
+
+		gyaradosY = gyaradosY+ gyaradosMoveStep;
+	}
+
+	gyaradosX = ClampScreenX(gyaradosX, gyaradosSize);
+	gyaradosY = ClampScreenY(gyaradosY, gyaradosSize);
+
 }
 
 void Game::ComposeFrame()
 {
-	//Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
-	Game::DrawGyarados(gyaradosX, gyaradosY);
+
 	Game::DrawMagiKarp(magiKarp0X, magiKarp0Y);
 	Game::DrawMagiKarpFlipped(magiKarp1X, magiKarp1Y);
 
+
+	if (!gyaradosFaceRight) {
+		Game::DrawGyarados(gyaradosX, gyaradosY);
+	}
+	else {
+		Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
+	}
+	
+
+
+	
+
 }
+

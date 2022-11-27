@@ -40,6 +40,10 @@ private:
 	void DrawGyaradosFlipped(int x, int y);
 	void DrawMagiKarp(int x, int y);
 	void DrawMagiKarpFlipped(int x, int y);
+
+	int ClampScreenX(int x,int size);
+	int ClampScreenY(int y,int size);
+
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -49,8 +53,10 @@ private:
 	int gyaradosSize = 53;
 	int magiKarpSize = 23;
 
-	int gyaradosX = 300;
-	int gyaradosY = 400;
+	int gyaradosX = 0;
+	int gyaradosY = 0;
+	bool gyaradosFaceRight = false;
+	int gyaradosMoveStep = 7;
 
 	int magiKarp0X = 100;
 	int magiKarp0Y = 100;
