@@ -40,6 +40,7 @@ private:
 	void DrawGyaradosFlipped(int x, int y);
 	void DrawMagiKarp(int x, int y);
 	void DrawMagiKarpFlipped(int x, int y);
+	void DrawGameOver(int x, int y);
 
 	int ClampScreenX(int x,int size);
 	int ClampScreenY(int y,int size);
@@ -68,6 +69,9 @@ private:
 	int magiKarp2X = 200;
 	int magiKarp2Y = 100;
 	bool karp2IsEaten = false;
+
+
+	bool gameOver = false;
 
 	/********************************/
 };
