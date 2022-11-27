@@ -43,5 +43,8 @@ void Game::UpdateModel()
 void Game::ComposeFrame()
 {
 	//Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
-	//Game::DrawGyarados(gyaradosX, gyaradosY);
+	Game::DrawGyarados(gyaradosX, gyaradosY);
+	Game::DrawMagiKarp(magiKarp0X, magiKarp0Y);
+	Game::DrawMagiKarpFlipped(magiKarp1X, magiKarp1Y);
+
 }

@@ -38,6 +38,8 @@ private:
 	/*  User Functions              */
 	void DrawGyarados(int x, int y);
 	void DrawGyaradosFlipped(int x, int y);
+	void DrawMagiKarp(int x, int y);
+	void DrawMagiKarpFlipped(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -45,7 +47,7 @@ private:
 	/********************************/
 	/*  User Variables              */
 	int gyaradosSize = 53;
-	int magiKarpSize = 41;
+	int magiKarpSize = 23;
 
 	int gyaradosX = 300;
 	int gyaradosY = 400;
