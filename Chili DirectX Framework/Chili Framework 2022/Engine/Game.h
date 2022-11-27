@@ -41,6 +41,7 @@ private:
 	void DrawMagiKarp(int x, int y);
 	void DrawMagiKarpFlipped(int x, int y);
 	void DrawGameOver(int x, int y);
+	void DrawTitleScreen(int x, int y);
 
 	int ClampScreenX(int x,int size);
 	int ClampScreenY(int y,int size);
@@ -72,6 +73,7 @@ private:
 
 
 	bool gameOver = false;
+	bool gameStart = true;
 
 	/********************************/
 };

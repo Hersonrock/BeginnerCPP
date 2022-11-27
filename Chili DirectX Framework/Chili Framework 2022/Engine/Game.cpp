@@ -81,41 +81,52 @@ bool Game::IsColliding(int x1, int y1, int x2, int y2, int size1, int size2)
 
 void Game::UpdateModel()
 {
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
+	if (gameStart) {
 
-		gyaradosX = gyaradosX + gyaradosMoveStep;
-		gyaradosFaceRight = true;
+		if (wnd.kbd.KeyIsPressed(VK_RETURN)) {
+
+			gameStart = false;
+		}
 	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
+	else {
 
-		gyaradosX = gyaradosX - gyaradosMoveStep;
-		gyaradosFaceRight = false;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_UP)) {
 
-		gyaradosY = gyaradosY - gyaradosMoveStep;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
+		if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
 
-		gyaradosY = gyaradosY + gyaradosMoveStep;
-	}
+			gyaradosX = gyaradosX + gyaradosMoveStep;
+			gyaradosFaceRight = true;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
 
-	gyaradosX = ClampScreenX(gyaradosX, gyaradosSize);
-	gyaradosY = ClampScreenY(gyaradosY, gyaradosSize);
-	if (!karp0IsEaten) {
-		karp0IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp0X, magiKarp0Y, gyaradosSize, magiKarpSize);
-	}
-	if (!karp1IsEaten) {
-		karp1IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp1X, magiKarp1Y, gyaradosSize, magiKarpSize);
-	}
-	if (!karp2IsEaten) {
-		karp2IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp2X, magiKarp2Y, gyaradosSize, magiKarpSize);
-	}
+			gyaradosX = gyaradosX - gyaradosMoveStep;
+			gyaradosFaceRight = false;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_UP)) {
 
-	if (karp0IsEaten&&karp1IsEaten&&karp2IsEaten) {
+			gyaradosY = gyaradosY - gyaradosMoveStep;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
 
-		gameOver = true;
+			gyaradosY = gyaradosY + gyaradosMoveStep;
+		}
 
+		gyaradosX = ClampScreenX(gyaradosX, gyaradosSize);
+		gyaradosY = ClampScreenY(gyaradosY, gyaradosSize);
+		if (!karp0IsEaten) {
+			karp0IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp0X, magiKarp0Y, gyaradosSize, magiKarpSize);
+		}
+		if (!karp1IsEaten) {
+			karp1IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp1X, magiKarp1Y, gyaradosSize, magiKarpSize);
+		}
+		if (!karp2IsEaten) {
+			karp2IsEaten = Game::IsColliding(gyaradosX, gyaradosY, magiKarp2X, magiKarp2Y, gyaradosSize, magiKarpSize);
+		}
+
+		if (karp0IsEaten && karp1IsEaten && karp2IsEaten) {
+
+			gameOver = true;
+
+		}
 	}
 }
 
@@ -123,28 +134,34 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	if (gameStart) {
 
-	if (!gameOver) {
-		if (!karp0IsEaten) {
-			Game::DrawMagiKarp(magiKarp0X, magiKarp0Y);
-		}
-		if (!karp1IsEaten) {
-			Game::DrawMagiKarpFlipped(magiKarp1X, magiKarp1Y);
-		}
-		if (!karp2IsEaten) {
-			Game::DrawMagiKarpFlipped(magiKarp2X, magiKarp2Y);
-		}
-
-		if (!gyaradosFaceRight) {
-			Game::DrawGyarados(gyaradosX, gyaradosY);
-		}
-		else {
-			Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
-		}
+		Game::DrawTitleScreen(400 - 174 / 2, 300 - 174 / 2);
 	}
 	else {
 
-		Game::DrawGameOver(400-20, 300-20);
+		if (!gameOver) {
+			if (!karp0IsEaten) {
+				Game::DrawMagiKarp(magiKarp0X, magiKarp0Y);
+			}
+			if (!karp1IsEaten) {
+				Game::DrawMagiKarpFlipped(magiKarp1X, magiKarp1Y);
+			}
+			if (!karp2IsEaten) {
+				Game::DrawMagiKarpFlipped(magiKarp2X, magiKarp2Y);
+			}
+
+			if (!gyaradosFaceRight) {
+				Game::DrawGyarados(gyaradosX, gyaradosY);
+			}
+			else {
+				Game::DrawGyaradosFlipped(gyaradosX, gyaradosY);
+			}
+		}
+		else {
+
+			Game::DrawGameOver(400 - 20, 300 - 20);
+		}
 	}
 
 
