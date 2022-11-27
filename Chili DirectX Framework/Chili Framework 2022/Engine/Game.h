@@ -43,6 +43,7 @@ private:
 
 	int ClampScreenX(int x,int size);
 	int ClampScreenY(int y,int size);
+	bool IsColliding(int x1, int y1, int x2, int y2, int size1, int size2);
 
 	/********************************/
 private:
