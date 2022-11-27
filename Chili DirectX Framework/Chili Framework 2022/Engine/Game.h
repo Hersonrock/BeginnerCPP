@@ -74,6 +74,7 @@ private:
 
 	bool gameOver = false;
 	bool gameStart = true;
+	bool enterIsPressed = false;
 
 	/********************************/
 };
